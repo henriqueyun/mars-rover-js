@@ -1,0 +1,14 @@
+{
+  "name": "mars-rover-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/henriqueyun/mars-rover-js",
+  "author": "henriqueyun@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "start": "npx tsc && node dist/index.js"
+  }
+}
