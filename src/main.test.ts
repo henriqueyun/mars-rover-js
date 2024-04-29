@@ -1,5 +1,5 @@
-import { main } from './index'
 import { eraseIndexes, prepareElasticsearch, searchByIndexName } from "./es/client";
+import main from "./main";
 import CommandLineData from "./types/CommandLineData";
 import Coordinates from "./types/Coordinates";
 import Orientation from "./types/Orientation";

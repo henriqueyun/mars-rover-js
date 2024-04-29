@@ -1,16 +1,8 @@
 import dotenv from "dotenv"
 dotenv.config()
-import { prepareElasticsearch, storeLogs } from "./es/client";
-import startRovers from "./startRovers";
-import CommandLineData from "./types/CommandLineData";
+import { prepareElasticsearch } from "./es/client";
 import CLIData from "./util/getDataFromCommandLine";
-
-export const main = async (input: CommandLineData) => {
-    const { rovers } = input
-    const output = startRovers(rovers)
-    await storeLogs(input, output)
-    console.log('The logs we\'re stored')
-}
+import main from "./main";
 
 if (process.env.NODE_ENV!.toLowerCase() !== 'test') {
     (async () => {
