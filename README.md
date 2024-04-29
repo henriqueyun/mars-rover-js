@@ -27,8 +27,7 @@ The solution receives three kind of parameters:
  |Parameter| Format |Meaning|Example|Rover data|
  |---------|--------|-------|-------|-------------|
  |Plateau/Grid dimensions|\<INTEGER\>, \<INTEGER\>|X limit and Y limit. The upper-right-corner limit.|5,5|No|
- |Rover starting position|\<INTEGER\>,\<INTEGER\>,\<CHARACTER\>|X position, Y position and orientation [where it is pointing to (should be N (North), S (South), W (West) or E (East)
-)]|1,1,W|Yes|
+ |Rover starting position|\<INTEGER\>,\<INTEGER\>,\<CHARACTER\>|X position, Y position and orientation {where it is pointing to [should be N (North), S (South), W (West) or E (East)]}|1,1,W|Yes|
  |Rover instructions|\<CHARACTER[]\>|The sequence of instruction that the rover should follow |LMRMLMLMLMR|Yes|
 
 Running at your shell, the parameters should be separated by spaces and look like this:
