@@ -73,7 +73,7 @@ yarn examples
 
 ### Checking Stored Log Data
 
-Store the log of the executions was part of the challenge. To check what data has been stored using you browser — after running a pre-made or a custom example — type at the url field: `http://localhost:9200/input-logs` or `http://localhost:9200/output-logs`.
+Store the log of the executions was part of the challenge. To check what data has been stored using you browser — after running a pre-made or a custom example — type at the url field: `http://localhost:9200/input-logs/_search` or `http://localhost:9200/output-logs/_search`.
 
 ## Tests
 
