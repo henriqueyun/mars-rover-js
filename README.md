@@ -73,6 +73,10 @@ Run the example input from [CHALLENGE.md](CHALLENGE.md) in the same execution
 yarn examples
 ```
 
+### Checking Stored Log Data
+
+Store the log of the executions was part of the challenge. To check what data has been stored using you browser — after running a pre-made or a custom example — type at the url field: `http://localhost:9200/input-logs` or `http://localhost:9200/output-logs`.
+
 ## Tests
 
 The project has basic tests, you can run it by running:
