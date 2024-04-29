@@ -7,7 +7,7 @@ export default class Rover {
     orientation: Orientation
     commands: Command[]
 
-    constructor(coordinates: Coordinates, orientation: Orientation, commands: string) {
+    constructor(coordinates: Coordinates, orientation: Orientation, commands: string, limits: Coordinates) {
         const commandsArray = commands.split('')
         if (!isArrayOfCommands(commandsArray)) {
             throw new Error(`Invalid commands at: ${commands}`)
@@ -24,9 +24,10 @@ export default class Rover {
         }
 
         this.commands.forEach((c: Command) => {
-            // this.printStatus(c)
+            this.printStatus(c)
             if (isMovementCommand(c)) {
                 this.move()
+                this.checkLimits(roverNumber)
                 return
             }
             this.rotate(c as DirectionCommand)
@@ -93,5 +94,15 @@ export default class Rover {
             return
         }
         this.orientation = Orientation.E
+    }
+
+    checkLimits(roverNumber?: number) {
+        const isLeftBelow = this.coordinates.x < 0 || this.coordinates.y < 0
+        const isRightAbove = this.coordinates.x < 0 || this.coordinates.y < 0
+        const isBeyondTheGrid = isLeftBelow || isRightAbove
+
+        if (isBeyondTheGrid) {
+            console.log(`Rover ${roverNumber ? `number ${roverNumber}`: ''} is beyond the grid/plateau`)
+        }
     }
 }

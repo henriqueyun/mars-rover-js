@@ -7,6 +7,7 @@ export const main = async (input: CommandLineData) => {
     const { rovers } = input
     const output = startRovers(rovers)
     await storeLogs(input, output)
+    console.log('The logs we\'re stored')
 }
 
 if (process.env.NODE_ENV?.toLowerCase() !== 'test') {

@@ -1,6 +1,6 @@
-import { isArrayOfCommands } from "../types/Commands"
 import Orientation, { isOrientation, isOrientationKey } from "../types/Orientation"
 import Rover from "../types/Rover"
+import getDataFromCommandLine from "./getDataFromCommandLine"
 
 export default function createRoverFromInput(x: string, y: string, orientationKey: string, commands: string) {
 
@@ -14,5 +14,5 @@ export default function createRoverFromInput(x: string, y: string, orientationKe
         throw new Error(`Invalid orientation: ${orientation}`)
     }
 
-    return new Rover({ x: parseInt(x), y: parseInt(y) }, orientation as Orientation, commands) // if this works I don't know how
+    return new Rover({ x: parseInt(x), y: parseInt(y) }, orientation as Orientation, commands, getDataFromCommandLine().UPPER_RIGHT_COORDINATES)
 }
