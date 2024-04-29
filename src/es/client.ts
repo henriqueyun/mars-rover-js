@@ -7,7 +7,7 @@ const client = new Client({
 const indexExists = async (indexName: string) => await client.indices.exists({ index: indexName })
 
 const createIndexIfItDoesntExist = async (indexName: string) => {
-    if (!await indexExists(indexName)) {
+    if (await indexExists(indexName)) {
         return null
     }
 

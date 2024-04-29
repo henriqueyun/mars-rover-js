@@ -14,6 +14,11 @@ function getUserFirstLineParameter(): number[] {
         .map((s: string) => parseInt(s)) as number[]
 }
 
+function getUpperRightLimit(): Coordinates {
+    const [x, y]: number[] = getUserFirstLineParameter()
+    return { x, y }
+}
+
 function getSecondToLastParameters(): string[] {
     return getAllUserParameters().slice(1)
 }
@@ -33,9 +38,8 @@ function getRoverData() {
 }
 
 
-export default (): CommandLineData => {
-    const [x, y]: number[] = getUserFirstLineParameter()
-    const UPPER_RIGHT_COORDINATES: Coordinates = { x, y }
-    const LOWER_LEFT_COORDINATES: Coordinates = { x: 0, y: 0 }
-    return { rovers: getRoverData(), UPPER_RIGHT_COORDINATES, LOWER_LEFT_COORDINATES }
-}
+export const UPPER_RIGHT_COORDINATES = getUpperRightLimit()
+export const LOWER_LEFT_COORDINATES = { x: 0, y: 0 }
+export const rovers = getRoverData()
+
+export default { rovers, UPPER_RIGHT_COORDINATES, LOWER_LEFT_COORDINATES }

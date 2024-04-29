@@ -6,6 +6,7 @@ export default class Rover {
     coordinates: Coordinates
     orientation: Orientation
     commands: Command[]
+    limits: Coordinates
 
     constructor(coordinates: Coordinates, orientation: Orientation, commands: string, limits: Coordinates) {
         const commandsArray = commands.split('')
@@ -16,6 +17,7 @@ export default class Rover {
         this.coordinates = coordinates
         this.orientation = orientation
         this.commands = commandsArray
+        this.limits = limits
     }
 
     activate(roverNumber?: number) {
@@ -98,7 +100,7 @@ export default class Rover {
 
     checkLimits(roverNumber?: number) {
         const isLeftBelow = this.coordinates.x < 0 || this.coordinates.y < 0
-        const isRightAbove = this.coordinates.x < 0 || this.coordinates.y < 0
+        const isRightAbove = this.coordinates.x > this.limits.x || this.coordinates.y > this.limits.y
         const isBeyondTheGrid = isLeftBelow || isRightAbove
 
         if (isBeyondTheGrid) {
