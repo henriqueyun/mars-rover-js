@@ -1,52 +1,55 @@
-# Challenge Description
+# Mars Rover Javascript
 
-## Mars Rover in JavaScript
-A squad of robotic rovers are to be landed by NASA on a plateau on Mars.
+This is a solution for a proposed challenge that you can look at [CHALLENGE.md](CHALLENGE.md)
 
-This plateau, which is curiously rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the surrounding terrain to send back to Earth.
+## Setting Up
 
-A rover’s position and location is represented by a combination of x and y co-ordinates and a letter representing one of the four cardinal compass points. The plateau is divided up into a grid to simplify navigation. An example position might be 0, 0, N, which means the rover is in the bottom left corner and facing North.
+Before running either the entire solution or just the tests you must prepare a Elastich Search simple http service at your machine using Docker Compose. Run at root: 
+ ```sh
+docker compose up -d
+ ```
 
-In order to control a rover , NASA sends a simple string of letters. The possible letters are ‘L’, ‘R’ and ‘M’. ‘L’ and ‘R’ makes the rover spin 90 degrees left or right respectively, without moving from its current spot. ‘M’ means move forward one grid point, and maintain the same heading.
+## Running
 
-Assume that the square directly North from (x, y) is (x, y 1).
+### Install
 
-### Input
-The first line of input is the upper-right coordinates of the plateau, the lower-left coordinates are assumed to be 0,0.
+Install dependencies running:
+```sh
+yarn
+```
 
-The rest of the input is information pertaining to the rovers that have been deployed. Each rover has two lines of input. The first line gives the rover’s position, and the second line is a series of instructions telling the rover how to explore the plateau.
+ ### Scripts
 
-The position is made up of two integers and a letter separated by spaces, corresponding to the x and y co-ordinates and the rover’s orientation.
+ #### Example 1
 
-Each rover will be finished sequentially, which means that the second rover won’t start to move until the first one has finished moving.
 
-### Output
-The output for each rover should be its final co-ordinates and heading.
+Run the example 1 input from [CHALLENGE.md](CHALLENGE.md)
 
-### Rover Data Example
-#### Example 1
-Landing Position: 1 2 N
-
-Instruction: LMLMLMLMM
-
-Final Position: 1 3 N
+```sh
+yarn example1
+```
 
 #### Example 2
-Landing Position: 3 3 E
 
-Instruction: MRRMMRMRRM
+Run the example 2 input from [CHALLENGE.md](CHALLENGE.md)
 
+```sh
+yarn example2
+```
 
-Final Position: 2 3 S <!-- this answer looks incorrect, turning right 5 times from E should point to north (E -> N -> W -> S -> E -> N) -->
-<hr>
+#### Examples
 
-What we Expect
-The application should allow the user to interact with it to define the plateau size and the rover data.
+Run both examples from 
+Run the example input from [CHALLENGE.md](CHALLENGE.md) in the same execution
 
-We will evaluate your code structure, readability, organization, clean code, and of course if the application works as expected.
+```sh
+yarn examples
+```
 
-Salve os logs das direçoes enviadas para um DB.
+## Tests
 
-Exemplificando: Caso usuario x aplique uma direção xyz, xyz entram em um backlog através de um DB criado por você. 
+The project has basic tests, you can run it by running:
 
-Ao finalizar ele, peço que faça o upload no Github e me envie o link para acesso.
+```sh
+yarn test
+```
