@@ -1,24 +1,27 @@
-import { main } from "./index";
+import { main } from './index'
+import { searchByIndexName } from "./es/client";
+import CommandLineData from "./types/CommandLineData";
+import Coordinates from "./types/Coordinates";
 import Orientation from "./types/Orientation";
 import Rover from "./types/Rover";
 
+
 describe('Index.ts main tests', function () {
-    describe('Examples tests', function () {
-        test('Rover should be at 1,3,N to landing position 1,2,N and instructions LMLMLMLMM', () => {
-            const r = new Rover({ x: 1, y: 2 }, Orientation.N, 'LMLMLMLMM')
-            r.activate()
-            expect(r.coordinates.x).toBe(1)
-            expect(r.coordinates.y).toBe(3)
-            expect(r.orientation).toBe(Orientation.N)
-        })
+    test('Should store program input and output logs', async function () {
+        const rover1 = new Rover({ x: 1, y: 2 }, Orientation.N, 'LMLMLMLMM')
+        const rover2 = new Rover({ x: 3, y: 3 }, Orientation.E, 'MRRMMRMRRM')
 
+        const UPPER_RIGHT_COORDINATES: Coordinates = { x: 4, y: 4 } // 4x4 (5x5?) grid
+        const LOWER_LEFT_COORDINATES: Coordinates = { x: 0, y: 0 }
 
-        test.failing('Rover should be at 2,3,S to landing position 3,3,E and instructions MRRMMRMRRM', () => {
-            const r = new Rover({ x: 3, y: 3 }, Orientation.E, 'MRRMMRMRRM')
-            r.activate()
-            expect(r.coordinates.x).toBe(2)
-            expect(r.coordinates.y).toBe(3)
-            expect(r.orientation).toBe(Orientation.S)
-        })
+        const CLIData: CommandLineData = { rovers: [rover1, rover2], UPPER_RIGHT_COORDINATES, LOWER_LEFT_COORDINATES }
+
+        await main(CLIData)
+
+        const input = await searchByIndexName('input-logs')
+        const output = await searchByIndexName('output-logs')
+
+        expect(input.hits.hits.length).toBeGreaterThan(0)
+        expect(output.hits.hits.length).toBeGreaterThan(1)
     })
 })

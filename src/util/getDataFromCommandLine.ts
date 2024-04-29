@@ -1,6 +1,7 @@
-import createRoverFromInput from "./createRoverFromInput"
-import Coordinates from "../types/Coordinates"
 import Rover from "../types/Rover"
+import Coordinates from "../types/Coordinates"
+import CommandLineData from "../types/CommandLineData"
+import createRoverFromInput from "./createRoverFromInput"
 
 function getAllUserParameters(): string[] {
     // the first two arguments will almost always be node and path/to/script.js https://shorturl.at/eBT14
@@ -32,7 +33,7 @@ function getRoverData() {
 }
 
 
-export default () => {
+export default (): CommandLineData => {
     const [x, y]: number[] = getUserFirstLineParameter()
     const UPPER_RIGHT_COORDINATES: Coordinates = { x, y }
     const LOWER_LEFT_COORDINATES: Coordinates = { x: 0, y: 0 }
