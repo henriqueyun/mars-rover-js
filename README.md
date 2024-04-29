@@ -34,7 +34,7 @@ Running at your shell, the parameters should be separated by spaces and look lik
 
 ```sh
 yarn rover 8,8 1,2,N LMLMLMLMM
-# 8,9 means a 9x9 [since the hardcoded lower-left corner (0, 0) is a valid position]
+# 8,8 means a 9x9 [since the hardcoded lower-left corner (0, 0) is a valid position]
 # 1,2,N is the rover starting position and orientation
 # LMLMLMLMM is the instructions to rover where L means left, R means right and M means move
 ```
@@ -65,8 +65,7 @@ yarn example2
 
 #### Examples (both in the same execution)
 
-Run both examples from 
-Run the example input from [CHALLENGE.md](CHALLENGE.md) in the same execution
+Run both examples from [CHALLENGE.md](CHALLENGE.md) in the same execution
 
 ```sh
 yarn examples
