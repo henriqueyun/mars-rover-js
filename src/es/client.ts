@@ -4,9 +4,10 @@ const client = new Client({
     node: 'http://localhost:9200'
 })
 
+const indexExists = async (indexName: string) => await client.indices.exists({ index: indexName })
+
 const createIndexIfItDoesntExist = async (indexName: string) => {
-    const indexExists = await client.indices.exists({ index: indexName })
-    if (!indexExists) {
+    if (!await indexExists(indexName)) {
         return null
     }
 
@@ -15,7 +16,7 @@ const createIndexIfItDoesntExist = async (indexName: string) => {
     })
 }
 
-export const indexLog = async (log: object | string, indexName: string) => {
+const indexLog = async (log: object | string, indexName: string) => {
     await client.index({ index: indexName, document: { log } })
 }
 
@@ -25,10 +26,21 @@ export const storeLogs = async (input: object, output: object) => {
 }
 
 export const prepareElasticsearch = async () => {
-    await createIndexIfItDoesntExist('rover-inputs')
-    await createIndexIfItDoesntExist('rover-outputs')
+    await createIndexIfItDoesntExist('input-logs')
+    await createIndexIfItDoesntExist('output-logs')
 }
 
 export const searchByIndexName = async (indexName: string) => {
-    return await client.search({ index: indexName })
+    return await client.search()
+}
+
+const deleteIndex = async (indexName: string) => {
+    if (await indexExists(indexName)) {
+        return await client.indices.delete({ index: indexName })
+    }
+}
+
+export const eraseIndexes = async () => {
+    await deleteIndex('input-logs')
+    await deleteIndex('output-logs')
 }

@@ -1,12 +1,18 @@
 import { main } from './index'
-import { searchByIndexName } from "./es/client";
+import { eraseIndexes, prepareElasticsearch, searchByIndexName } from "./es/client";
 import CommandLineData from "./types/CommandLineData";
 import Coordinates from "./types/Coordinates";
 import Orientation from "./types/Orientation";
 import Rover from "./types/Rover";
-
+import { setTimeout } from 'timers/promises';
 
 describe('Index.ts main tests', function () {
+
+    beforeAll(async () => {
+        await eraseIndexes()
+        await prepareElasticsearch()
+    })
+
     test('Should store program input and output logs', async function () {
         const rover1 = new Rover({ x: 1, y: 2 }, Orientation.N, 'LMLMLMLMM')
         const rover2 = new Rover({ x: 3, y: 3 }, Orientation.E, 'MRRMMRMRRM')
@@ -18,10 +24,13 @@ describe('Index.ts main tests', function () {
 
         await main(CLIData)
 
+        const timeout = setTimeout(1000)
+        await timeout // question my methods but not my results
+
         const input = await searchByIndexName('input-logs')
         const output = await searchByIndexName('output-logs')
 
         expect(input.hits.hits.length).toBeGreaterThan(0)
         expect(output.hits.hits.length).toBeGreaterThan(1)
-    })
+    }, 30000)
 })
