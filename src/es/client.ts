@@ -15,13 +15,8 @@ const createIndexIfItDoesntExist = async (indexName: string) => {
     })
 }
 
-const indexLog = async (log: object | string, indexName: string) => {
+export const indexLog = async (log: object | string, indexName: string) => {
     await client.index({ index: indexName, document: { log } })
-}
-
-export const storeLogs = async (input: object, output: string) => {
-    await indexLog(input, 'input-logs')
-    await indexLog(output, 'output-logs')
 }
 
 export const prepareElasticsearch = async () => {

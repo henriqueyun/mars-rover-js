@@ -24,7 +24,7 @@ export default class Rover {
         }
 
         this.commands.forEach((c: Command) => {
-            this.printStatus(c)
+            // this.printStatus(c)
             if (isMovementCommand(c)) {
                 this.move()
                 return

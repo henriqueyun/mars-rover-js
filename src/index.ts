@@ -1,17 +1,25 @@
-import { storeLogs, prepareElasticsearch } from "./es/client";
+import { prepareElasticsearch, indexLog } from "./es/client";
+import Rover from "./types/Rover";
 import getDataFromCommandLine from "./util/getDataFromCommandLine";
 
-(async () => {
-    await prepareElasticsearch()
+const input = getDataFromCommandLine()
+const { rovers } = input
 
-    const input = getDataFromCommandLine()
-    const { rovers } = input
+export const main = async (rovers: Rover[]) => {
+    await indexLog(input, 'input-logs')
 
-    rovers.forEach(async (r, index) => {
+    const promises = rovers.map(async (r, index) => {
         const number = index + 1
         r.activate(number)
         const output = r.printFinalPosition(number)
-
-        await storeLogs(input, output)
+    
+        await indexLog(output, 'output-logs')
     })
+
+    await Promise.all(promises)
+}
+
+(async () => {
+    await prepareElasticsearch()
+    await main(rovers)
 })()

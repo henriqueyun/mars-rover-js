@@ -6,7 +6,11 @@
   "author": "henriqueyun@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
   "scripts": {
@@ -14,7 +18,8 @@
     "rover": "npm start",
     "example1": "npm start 8,8 1,2,N LMLMLMLMM",
     "example2": "npm start 8,8 3,3,E MRRMMRMRRM",
-    "examples": "npm start 8,8 1,2,N LMLMLMLMM 3,3,E MRRMMRMRRM"
+    "examples": "npm start 8,8 1,2,N LMLMLMLMM 3,3,E MRRMMRMRRM",
+    "test": "jest"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8.13.1"
