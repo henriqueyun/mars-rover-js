@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  elasticsearch:
+    image: elasticsearch:8.13.0
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      discovery.type: "single-node"
+      cluster.routing.allocation.disk.threshold_enabled: false
+      xpack.security.enabled: false
+    healthcheck:
+      test: ["CMD", "curl", "-XPUT", "-H", "'Content-Type: application/json'", "http://localhost:9200/_cluster/settings", "-d", "'{ \"transient\": { \"cluster.routing.allocation.disk.threshold_enabled\": false } }'"]
+      interval: 10s
+      timeout: 10s
+      retries: 1 

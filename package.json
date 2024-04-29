@@ -15,5 +15,8 @@
     "example1": "npm start 8,8 1,2,N LMLMLMLMM",
     "example2": "npm start 8,8 3,3,E MRRMMRMRRM",
     "examples": "npm start 8,8 1,2,N LMLMLMLMM 3,3,E MRRMMRMRRM"
+  },
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.13.1"
   }
 }

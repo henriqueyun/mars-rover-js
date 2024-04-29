@@ -42,7 +42,9 @@ export default class Rover {
     }
 
     printFinalPosition(roverNumber: number) {
-        console.log(`\nROVER NUMBER ${roverNumber} FINAL POSITION: ${this.printStatus()}\n`)
+        const finalPosition = `\nROVER NUMBER ${roverNumber} FINAL POSITION: ${this.printStatus()}\n`
+        console.log(finalPosition)
+        return finalPosition
     }
 
     move() {
